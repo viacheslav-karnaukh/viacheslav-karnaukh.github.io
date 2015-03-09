@@ -109,7 +109,6 @@ header {
     background: #e3e3e3;
     border-radius: 2px;
     font-size: 12px;
-
 }
 
 .main nav ul {
@@ -119,9 +118,7 @@ header {
 }
 
 .main nav li {
-    /*padding: 13px 16px;*/
-    border-right: 1px solid #d3d3d3;
-     
+    border-right: 1px solid #d3d3d3;     
 }
 
 .main nav li:not(:first-child) {
@@ -195,7 +192,7 @@ h1 {
 }
 
 .main > ul li:before {
-  content: "•";
+  content: "\25CF";
   color: #44a7ec;
   padding-right: 15px;
 }
