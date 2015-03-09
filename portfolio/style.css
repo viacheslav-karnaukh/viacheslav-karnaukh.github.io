@@ -1,0 +1,389 @@
+﻿/*   CSS reset     */
+html, body, div, span, h1, h2, h3, h4, h5, h6, 
+p, a, em, img, strong, ol, ul, li, fieldset, form, label, legend,
+caption, article, aside, canvas, figure, figcaption, 
+footer, header, nav, section {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/*global*/
+body {
+    background: #eee url('images/bg.jpg');
+    font-family: sans-serif;
+    height: 100%;
+    color: #8c8c8c;
+}
+
+#wrapper {
+    max-width: 90%;
+    min-width: 700px;
+    margin: auto;
+    min-height: 100%;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('fonts/bebas-neue-regular.ttf');
+  }
+
+section {
+  margin-top: 45px;
+}
+
+
+/*header*/
+header div, nav {
+    min-width: 25%;
+    min-height: 90px;
+}
+
+header a {
+  color: #a44;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+}
+
+header span {
+  display: block;
+  font: 38px 'Bebas Neue', sans-serif;
+  color: #8c8c8c;  
+}
+
+  header span:hover {
+    text-decoration: underline;
+  }
+
+.headname {
+    float: left;
+    padding: 30px;
+}
+
+header nav {
+    float: right;
+    padding: 20px;  
+}
+
+header nav ul {
+  margin: auto;
+  padding: 10% 2%;
+}
+
+nav a {
+    text-decoration: none;
+    color: #bebebe;
+    font: 20px 'Bebas Neue', Verdana;
+    padding: 0 5px;
+}
+
+nav a:hover {
+  border-bottom: 2px solid #a00;
+  color: #8c8c8c;
+}
+
+nav li {
+    display: inline-block;
+}
+
+
+
+
+
+/*main content*/
+.hello {
+    padding: 5%;
+    clear: both;
+    text-align: center;
+    min-height: 200px;
+}
+
+  .hello p {
+    font: 52px Helvetica, Verdana, sans-serif;
+    
+  }
+
+    .hello p span {
+      font-weight: bold;
+      color: #8b8b8b;
+      text-transform: uppercase;
+    }
+
+h2 {
+  border-bottom: 3px solid #dfdedc;
+  margin: 10px;
+  font: 30px 'Bebas Neue', Verdana, sans-serif;
+  color: #d14343;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+
+.experience>div, .contact>div {
+    float: left;
+    width: 50%;
+    min-height: 200px;
+}
+
+.content {
+  margin: 20px;
+  font-size: 11px;
+  line-height: 150%;
+}
+
+  .experience .content img {
+    margin: 0 20px 20px 0;
+    
+  }
+
+.web, .graphic {
+    float: left;
+    width: 45%;
+    min-height: 100px;
+    margin: 0 1% 0 2%;
+}
+
+
+.skills ul {
+    list-style-position: inside;
+    list-style: none;
+}
+
+.skills p, .contact p, input[type=submit] {
+  font: 20px 'Bebas Neue';
+  text-transform: uppercase;
+}
+
+.skills li:before {
+  content: "• ";
+  color: #a00;
+}
+
+.about img {
+  float: left;
+  width: 85px;
+  margin: 2%;
+}
+
+.portfolio {
+    clear: both;
+    min-height: 270px;
+}
+    /*shadows after the images in the portfolio section*/
+    .portfolio ul.shadows li {
+      position: relative;
+    }
+    .portfolio ul.shadows li:before {
+      z-index: -1;
+      position: absolute;
+      content: "";
+      width: 50%;
+      height: 50%;
+      top: 10px;
+      left: 4px;
+      box-shadow: -5px -5px 4px #777;
+      transform: rotate(-3deg);
+    }
+    .portfolio ul.shadows li:after {
+      z-index: -1;
+      position: absolute;
+      content: "";
+      width: 50%;
+      height: 50%;
+      top: 10px;
+      right: 4px;
+      box-shadow: 5px -5px 4px #777;
+      transform: rotate(3deg);
+    }
+
+    .portfolio ul {
+        margin: 2% 1% 0 0;
+    }
+
+    .portfolio div>ul {
+      color: #8c8c8c;
+      float: right;
+      font-size: 10px;
+    }
+
+    .portfolio div>ul>li:hover {
+      cursor: pointer;
+      color: #a00;
+    }
+
+    .portfolio li {
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 15px;
+    }
+
+ul.shadows {
+  width: 95%;
+  margin: auto;
+}
+
+.shadows a {
+  text-decoration: none;
+  font-size: 11px;
+  color: #8c8c8c;
+  text-align: center;
+}
+
+figcaption {
+  margin: 8px 0 15px 0;
+}
+
+/*contacts and footer*/
+
+.formwrapper p {
+  margin: 20px;
+}
+
+form {
+  margin: 20px 20px 45px 20px;
+}
+
+.input {
+  float: left;
+  width: 50%;
+}
+
+.input input {
+  background: #e8e8e8;
+  width: 90%;
+  height: 25px;
+  font: 14px monospace, helvetica, sans-serif;
+  padding: 3px;
+  color: #8c8c8c;
+}
+
+::-webkit-input-placeholder {
+  color: #daa;
+}
+
+h6 {
+  font-size: 11px;
+  margin-bottom: 3px;
+}
+
+[type=email] {
+  margin-bottom: 14px;
+}
+
+textarea {
+  width: 95%;
+  height: 120px;
+  background: #e8e8e8;
+}
+
+[type=submit] {
+      background: linear-gradient(#e07a7a, #dc6565);
+      color: #fff;
+      border: 0;
+      padding: 10px 35px;
+      margin-top: 25px;
+    }
+
+    [type=submit]:hover {
+      cursor: pointer;
+    }
+
+.contactinfo p {
+    margin: 20px 20px 20px 0;
+  }
+
+iframe {
+  margin-right: 35px;
+  margin-bottom: 20px;
+  float: left;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+dl {
+  width: 40%;
+  overflow: hidden;
+}
+
+dt {
+  font: bold 12px sans-serif;
+  margin-bottom: 7px;
+}
+
+.contactinfo dd p {
+  font: 12px sans-serif;
+  margin: 3px;
+  text-transform: none;
+}
+
+dd {
+  margin: 0 0 13px 2px;
+}
+
+dd a {
+  color: #dc6565;
+}
+
+footer {
+  border-top: 3px solid #dfdedc;
+    min-height: 50px;
+    margin: 0 10px;
+    clear: both;
+}
+
+  footer {
+    font-size: 10px;
+    
+  }
+
+    footer>div {
+      margin: 0 10px;
+    }
+
+    footer p {
+      margin-top: 10px;
+      float: left;
+ 
+    }
+
+    footer .social {
+      width: 40%;
+      float: right;
+      display: inline-block;
+      text-align: right;
+    }
+
+    footer div a {
+      color: #dc6565;
+    }
+
+.social a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 3px;
+    vertical-align: middle;
+    -webkit-transition: all .1s;
+}
+
+  .social a.twitter {
+    background: url('images/twitter.png') left top no-repeat;
+    background-size: 40px 120px;
+  }
+  .social a.fb {
+    background: url('images/fb.png');
+    background-size: 40px 120px;
+  }
+  .social a.dribble {
+    background: url('images/dribble.png');
+    background-size: 40px 120px;
+  }
+  .social a.youtube {
+    background: url('images/youtube.png');
+    background-size: 40px 120px;
+  }
+  .social a:hover { background-position: left -40px; }

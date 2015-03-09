@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="fonts/raphaelicons/raphaelicons.css">
+    <link rel="stylesheet" href="highlight.js/github.css">
+    <script src="highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Portfolio - Viacheslav Karnaukh</title>
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">Viacheslav Karnaukh</a>
+                </li>
+                <li>
+                    <a href="#taglist"><i class="glyphicon glyphicon-tags"> </i>List of Tags</a>
+                </li>
+                <li>
+                    <a href="#stopwatch"><i class="glyphicon glyphicon-time">  </i>Stopwatch</a>
+                </li>
+                <li>
+                    <a href="#form-validation"><i class="glyphicon glyphicon-check"> </i>Form Validation</a>
+                </li>
+                <li>
+                    <a href="#contextmenu"><i class="glyphicon glyphicon-list-alt"> </i>Custom Contextmenu</a>
+                </li>
+                <li>
+                    <a href="#zoomable"><i class="glyphicon glyphicon-zoom-in"> </i>Image Zoomer</a>
+                </li>
+                <li>
+                    <a href="#portfolio-template"><i class="glyphicon glyphicon-briefcase"> </i>Portfolio Site Template</a>
+                </li>
+                <li>
+                    <a href="#ecommerce-template"><i class="glyphicon glyphicon-shopping-cart"> </i>Ecommerce Site Template</a>
+                </li>
+            </ul>
+            
+        </div>
+
+        <div id="sidebar-wrapper-narrow">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand"><a href="#">VK</a></li>
+                <li>
+                    <a href="#taglist" title="List of Tags"><i class="glyphicon glyphicon-tags"> </i></a>
+                </li>
+                <li>
+                    <a href="#stopwatch" title="Stopwatch"><i class="glyphicon glyphicon-time">  </i></a>
+                </li>
+                <li>
+                    <a href="#form-validation" title="Form Validation"><i class="glyphicon glyphicon-check"> </i></a>
+                </li>
+                <li>
+                    <a href="#contextmenu" title="Custom Contextmenu"><i class="glyphicon glyphicon-list-alt"> </i></a>
+                </li>
+                <li>
+                    <a href="#zoomable" title="Image Zoomer"><i class="glyphicon glyphicon-zoom-in"> </i></a>
+                </li>
+                <li>
+                    <a href="#portfolio-template" title="Portfolio Site Template"><i class="glyphicon glyphicon-briefcase"> </i></a>
+                </li>
+                <li>
+                    <a href="#ecommerce-template" title="Ecommerce Site Template"><i class="glyphicon glyphicon-shopping-cart"> </i></a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <div class="social">
+            <a href="https://ua.linkedin.com/in/karnaukh" target="_blank"><span class="icon">T</span></a>
+            <a href="https://github.com/viacheslav-karnaukh" target="_blank"><span class="icon">U</span></a>
+            <a href="mailto:vyacheslav.karnauh@gmail.com"><span class="icon">M</span></a>
+        </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row taglist col-lg-offset-1 col-lg-10" id="taglist">
+                    <h1 class="project-name well">
+                        <a href="#" title="View in new tab" target="_blank">List of Tags <span class="glyphicon glyphicon-share-alt"></span></a>
+                    </h1>
+                    <img src="img/taglist.png" alt="List of tags" class="img-responsive center-block">
+                    <p class="lead">This list of tags has edit and view modes. It is able to add new unique tags via input field with pushing <code>Add</code> button or pressing <code>Enter</code> key. Array of predefined tags is an optional argument. There can be more than one tag list in a node.</p> 
+                    <p class="lead">Tag list places to html page with the following command: <pre><code>new TagList($('node'), [tags]);</code></pre></p>                    
+                    <div class="text-center">
+                        <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                    </div>
+                    <hr>
+                </div>
+                <!-- /.taglist -->                
+                <div class="row stopwatch col-lg-offset-1 col-lg-10" id="stopwatch">                        
+                    <h1 class="project-name well">
+                        <a href="#" title="View in new tab" target="_blank">Stopwatch <span class="glyphicon glyphicon-share-alt"></span></a>
+                    </h1>
+                    <img src="img/stopwatch.png" alt="Stopwatch" class="img-responsive center-block">      
+                    <p class="lead">Stopwatch widget has <code>Start/Stop</code>, <code>Reset</code> and <code>Lap</code> buttons as well as keyboard shortcuts <code>S</code>, <code>R</code> and <code>L</code> accordingly. All the placed stopwatches to the page work independently. In case there are several stopwathes on the page keyboard shortcuts work as follows: only one stopwatch can be controlled via keyboard at a time - the stopwatch which is currently hovered over or the latest stopwatch hovered over.</p>
+                    <p class="lead">It is possible to place no more than one stopwatch to any of nodes. The example of placing three independently working stopwatches in <code>.node</code>, <code>.node2</code> and <code>.node3</code>: 
+                    <pre><code>new Timer(document.querySelector('.node'));
+new Timer(document.querySelector('.node2'));
+new Timer(document.querySelector('.node3'));</code></pre></p>                    
+                    <div class="text-center">
+                        <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                    </div>                    
+                    <hr>                    
+                </div>
+                <!-- /.stopwatch -->
+                <div class="row form-validation col-lg-offset-1 col-lg-10" id="form-validation">
+                        <h1 class="project-name well">
+                            <a href="#" title="View in new tab" target="_blank">Form Validation <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </h1>
+                        <img src="img/form validation.png" alt="Form Validation" class="img-responsive center-block">
+                        <p class="lead">Form validation activates on <code>keyup</code>, <code>change</code> or <code>blur</code> events. Email and password fields are mandatory for filling. The possibility to use an email depends on its availability, i.e. if email is already taken it is not available. All the taken emails are stored either on the client in <code>usedEmails</code> array or on the server. To add new emails on the server you can use <a href="https://aqueous-reaches-8130.herokuapp.com/">this server</a>. Here are the used emails which are predefined and stored in the array on the client:</p>
+                        <pre><code>var usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];</code></pre>
+                        
+                        <div class="text-center">
+                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        </div>
+                        <hr>                    
+                </div>
+                <!-- /.form-validation -->
+                <div class="row contextmenu col-lg-offset-1 col-lg-10" id="contextmenu">
+                        <h1 class="project-name well">
+                            <a href="#" title="View in new tab" target="_blank">Custom Contextmenu <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </h1>
+                        <img src="img/contextmenu.png" alt="Custom Contextmenu" class="img-responsive center-block">
+                        <p class="lead">Contextmenu is used on chosen node instead of the default contextmenu of the browser. It uses titles and actions predefined by the user in the template. There could be any level of submenu nesting and quantity of titles. It is also available to place different contextmenus on the same page in separete nodes. The example of usage goes below.</p>
+                        <pre><code>var menuExample1 = [{
+    title: 'File',
+    action: function () {console.log('open file')}
+}, {
+    title: 'Edit',
+    action: function () {console.log('edit content')}
+}, {
+    title: 'More stuff',
+    submenu: [{
+        title: 'Send by email',
+        action: function () {console.log('emailed')}
+    }, {
+        title: 'Send via skype',
+        action: function () {console.log('skyped')}
+    }]
+}];
+
+var menuExample2 = [{
+    title: 'Open file',
+    action: function () {console.log('open file')}
+}, {
+    title: 'Edit file',
+    action: function () {console.log('edit file')}
+}
+];
+
+var contextMenu1 = new ContextMenu(document.querySelector('.left'), menuExample1);
+var contextMenu2 = new ContextMenu(document.querySelector('.right'), menuExample2);</code></pre>                        
+                        <div class="text-center">
+                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        </div>
+                        <hr>                    
+                </div>
+                <!-- /.contextmenu -->
+                <div class="row zoomable col-lg-offset-1 col-lg-10" id="zoomable">
+                        <h1 class="project-name well">
+                            <a href="#" title="View in new tab" target="_blank">Image Zoomer <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </h1>
+                        <img src="img/zoomable.png" alt="Image Zoomer" class="img-responsive center-block">
+                        <p class="lead">This widget shows big image when clicking on small one, shading all the page. The big image is always centered vertically and horizontally even after page scrolling or resizing. To close big image click <code>cross</code> on it or press <code>ESC</code> key. The example of initialization:</p>
+                        <pre><code>makeZoomable($('.gallery-1'));
+makeZoomable($('.gallery-2'));</code></pre>                        
+                        <div class="text-center">
+                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        </div>
+                        <hr>                    
+                </div>
+                <!-- /.zoomable -->
+                <div class="row portfolio-template col-lg-offset-1 col-lg-10" id="portfolio-template">
+                        <h1 class="project-name well">
+                            <a href="#" title="View in new tab" target="_blank">Portfolio Site Template <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </h1>
+                        <img src="img/theportfolio.png" alt="Portfolio site template" class="img-responsive center-block">
+                        <p class="lead">Layout implementation for portfolio site using <code>.psd</code> template.</p>
+                        
+                        <div class="text-center">
+                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        </div>
+                        <hr>                    
+                </div>
+                <!-- /.portfolio-template -->
+                <div class="row ecommerce-template col-lg-offset-1 col-lg-10" id="ecommerce-template">
+                        <h1 class="project-name well">
+                            <a href="#" title="View in new tab" target="_blank">E-commerce Site Template <span class="glyphicon glyphicon-share-alt"></span></a>
+                        </h1>
+                        <img src="img/somecorp.png" alt="Portfolio site template" class="img-responsive center-block">
+                        <p class="lead">Layout implementation for e-commerce site using <code>.psd</code> template.</p>
+                        
+                        <div class="text-center">
+                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        </div>
+                </div>
+                <!-- /.ecommerce-template -->
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <script src="js/sideNavHighlight.js"></script>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
