@@ -83,21 +83,21 @@
             <div class="container-fluid">
                 <div class="row taglist col-lg-offset-1 col-lg-10" id="taglist">
                     <h1 class="project-name well">
-                        <a href="#" title="View in new tab" target="_blank">List of Tags <span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a href="taglist" title="View in new tab" target="_blank">List of Tags <span class="glyphicon glyphicon-share-alt"></span></a>
                     </h1>
                     <img src="img/taglist.png" alt="List of tags" class="img-responsive center-block">
                     <p class="lead">This list of tags has edit and view modes. It is able to add new unique tags via input field with pushing <code>Add</code> button or pressing <code>Enter</code> key. Array of predefined tags is an optional argument. There can be more than one tag list in a node.</p> 
                     <p class="lead">Tag list places to html page with the following command: <pre><code>new TagList($('node'), [tags]);</code></pre></p>                    
                     <div class="text-center">
                         <a href="taglist" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
-                        <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        <a href="https://github.com/viacheslav-karnaukh/viacheslav-karnaukh.github.io/tree/master/taglist" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
                     </div>
                     <hr>
                 </div>
                 <!-- /.taglist -->                
                 <div class="row stopwatch col-lg-offset-1 col-lg-10" id="stopwatch">                        
                     <h1 class="project-name well">
-                        <a href="#" title="View in new tab" target="_blank">Stopwatch <span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a href="stopwatch" title="View in new tab" target="_blank">Stopwatch <span class="glyphicon glyphicon-share-alt"></span></a>
                     </h1>
                     <img src="img/stopwatch.png" alt="Stopwatch" class="img-responsive center-block">      
                     <p class="lead">Stopwatch widget has <code>Start/Stop</code>, <code>Reset</code> and <code>Lap</code> buttons as well as keyboard shortcuts <code>S</code>, <code>R</code> and <code>L</code> accordingly. All the placed stopwatches to the page work independently. In case there are several stopwathes on the page keyboard shortcuts work as follows: only one stopwatch can be controlled via keyboard at a time - the stopwatch which is currently hovered over or the latest stopwatch hovered over.</p>
@@ -106,30 +106,30 @@
 new Timer(document.querySelector('.node2'));
 new Timer(document.querySelector('.node3'));</code></pre></p>                    
                     <div class="text-center">
-                        <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
-                        <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                        <a href="stopwatch" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                        <a href="https://github.com/viacheslav-karnaukh/viacheslav-karnaukh.github.io/tree/master/stopwatch" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
                     </div>                    
                     <hr>                    
                 </div>
                 <!-- /.stopwatch -->
                 <div class="row form-validation col-lg-offset-1 col-lg-10" id="form-validation">
                         <h1 class="project-name well">
-                            <a href="#" title="View in new tab" target="_blank">Form Validation <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="form-validation" title="View in new tab" target="_blank">Form Validation <span class="glyphicon glyphicon-share-alt"></span></a>
                         </h1>
                         <img src="img/form validation.png" alt="Form Validation" class="img-responsive center-block">
                         <p class="lead">Form validation activates on <code>keyup</code>, <code>change</code> or <code>blur</code> events. Email and password fields are mandatory for filling. The possibility to use an email depends on its availability, i.e. if email is already taken it is not available. All the taken emails are stored either on the client in <code>usedEmails</code> array or on the server. To add new emails on the server you can use <a href="https://aqueous-reaches-8130.herokuapp.com/">this server</a>. Here are the used emails which are predefined and stored in the array on the client:</p>
                         <pre><code>var usedEmails = ['author@mail.com', 'foo@mail.com', 'tester@mail.com'];</code></pre>
                         
                         <div class="text-center">
-                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
-                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                            <a href="form-validation" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="https://github.com/viacheslav-karnaukh/viacheslav-karnaukh.github.io/tree/master/form-validation" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
                         </div>
                         <hr>                    
                 </div>
                 <!-- /.form-validation -->
                 <div class="row contextmenu col-lg-offset-1 col-lg-10" id="contextmenu">
                         <h1 class="project-name well">
-                            <a href="#" title="View in new tab" target="_blank">Custom Contextmenu <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="contextmenu" title="View in new tab" target="_blank">Custom Contextmenu <span class="glyphicon glyphicon-share-alt"></span></a>
                         </h1>
                         <img src="img/contextmenu.png" alt="Custom Contextmenu" class="img-responsive center-block">
                         <p class="lead">Contextmenu is used on chosen node instead of the default contextmenu of the browser. It uses titles and actions predefined by the user in the template. There could be any level of submenu nesting and quantity of titles. It is also available to place different contextmenus on the same page in separete nodes. The example of usage goes below.</p>
@@ -162,23 +162,23 @@ var menuExample2 = [{
 var contextMenu1 = new ContextMenu(document.querySelector('.left'), menuExample1);
 var contextMenu2 = new ContextMenu(document.querySelector('.right'), menuExample2);</code></pre>                        
                         <div class="text-center">
-                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
-                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                            <a href="contextmenu" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="https://github.com/viacheslav-karnaukh/viacheslav-karnaukh.github.io/tree/master/contextmenu" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
                         </div>
                         <hr>                    
                 </div>
                 <!-- /.contextmenu -->
                 <div class="row zoomable col-lg-offset-1 col-lg-10" id="zoomable">
                         <h1 class="project-name well">
-                            <a href="#" title="View in new tab" target="_blank">Image Zoomer <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="zoomable" title="View in new tab" target="_blank">Image Zoomer <span class="glyphicon glyphicon-share-alt"></span></a>
                         </h1>
                         <img src="img/zoomable.png" alt="Image Zoomer" class="img-responsive center-block">
                         <p class="lead">This widget shows big image when clicking on small one, shading all the page. The big image is always centered vertically and horizontally even after page scrolling or resizing. To close big image click <code>cross</code> on it or press <code>ESC</code> key. The example of initialization:</p>
                         <pre><code>makeZoomable($('.gallery-1'));
 makeZoomable($('.gallery-2'));</code></pre>                        
                         <div class="text-center">
-                            <a href="#" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
-                            <a href="#" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
+                            <a href="zoomable" target="_blank" class="link-to-project">View in new tab <span class="glyphicon glyphicon-share-alt"></span></a>
+                            <a href="https://github.com/viacheslav-karnaukh/viacheslav-karnaukh.github.io/tree/master/zoomable" target="_blank" class="link-to-project">View source <span class="icon">U</span></a>
                         </div>
                         <hr>                    
                 </div>
