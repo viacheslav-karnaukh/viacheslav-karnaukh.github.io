@@ -68,10 +68,16 @@
             }
         },
         submitState: function() {
+            function preventEnterKeyPress(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            }
             if (check.requirements()) {
                 submitButton.className = 'btn btn-primary';
             } else {
                 submitButton.className = 'btn btn-primary disabled';
+                document.documentElement.addEventListener('keypress', preventEnterKeyPress, false);
             }
         }
     };
@@ -79,49 +85,49 @@
     var controls = {
         input: function(field) {
             function validInputs() {
-                function checkEmailOnServer(emailToCheck) {
-                    var request = new XMLHttpRequest();
-                    var STATE_READY = 4;
-                    var isUsed = false;
-                    request.open('get', 'https://aqueous-reaches-8130.herokuapp.com/check-email/?email=' + emailToCheck, true);
-                    request.onreadystatechange = function() {
-                        if (request.readyState === STATE_READY) {
-                            isUsed = JSON.parse(request.responseText)['used'];
-                            if (isUsed) display.errorOn(field, errorMessages['email']['usedOnServer'](field.value));
+                    function checkEmailOnServer(emailToCheck) {
+                            var request = new XMLHttpRequest();
+                            var STATE_READY = 4;
+                            var isUsed = false;
+                            request.open('get', 'https://aqueous-reaches-8130.herokuapp.com/check-email/?email=' + emailToCheck, true);
+                            request.onreadystatechange = function() {
+                                if (request.readyState === STATE_READY) {
+                                    isUsed = JSON.parse(request.responseText)['used'];
+                                    if (isUsed) display.errorOn(field, errorMessages['email']['usedOnServer'](field.value));
+                                }
+                            };
+                            request.send();
                         }
-                    };
-                    request.send();
-                }
-                    // depending on which field data input occurs, construct cases of error messages
-                switch (field.id) {
-                    case 'email':
-                        if (!check.pattern(patterns['email']['contains @'], field)) {
-                            display.errorOn(field, errorMessages['email']['withoutAt']);
-                        } else if (!check.pattern(patterns['email']['valid'], field)) {
-                            display.errorOn(field, errorMessages['email']['not valid']);
-                        } else if (usedEmails.indexOf(field.value) !== -1) {
-                            display.errorOn(field, errorMessages['email']['used'](field.value));
-                        } else checkEmailOnServer(field.value);
-                        if (!field.value) display.errorOff(field);
-                        break;
-                    case 'password':
-                        if (check.pattern(patterns['password']['forbidden symbols'], field)) {
-                            display.errorOn(field, errorMessages['password']['allowed symbols']);
-                        } else if (!check.pattern(patterns['password']['not too short'], field)) {
-                            display.errorOn(field, errorMessages['password']['short']);
-                        } else if (check.pattern(patterns['password']['too simple'], field)) {
-                            display.errorOn(field, errorMessages['password']['simple']);
-                        }
-                        if (!field.value) display.errorOff(field);
-                        break;
-                    case 'phone':
-                        if (!check.pattern(patterns['phone'], field)) {
-                            display.errorOn(field, errorMessages['phone']);
-                        }
-                        if (!field.value) display.errorOff(field);
-                        break;
-                }
-                display.submitState();
+                        // depending on which field data input occurs, construct cases of error messages
+                    switch (field.id) {
+                        case 'email':
+                            if (!check.pattern(patterns['email']['contains @'], field)) {
+                                display.errorOn(field, errorMessages['email']['withoutAt']);
+                            } else if (!check.pattern(patterns['email']['valid'], field)) {
+                                display.errorOn(field, errorMessages['email']['not valid']);
+                            } else if (usedEmails.indexOf(field.value) !== -1) {
+                                display.errorOn(field, errorMessages['email']['used'](field.value));
+                            } else checkEmailOnServer(field.value);
+                            if (!field.value) display.errorOff(field);
+                            break;
+                        case 'password':
+                            if (check.pattern(patterns['password']['forbidden symbols'], field)) {
+                                display.errorOn(field, errorMessages['password']['allowed symbols']);
+                            } else if (!check.pattern(patterns['password']['not too short'], field)) {
+                                display.errorOn(field, errorMessages['password']['short']);
+                            } else if (check.pattern(patterns['password']['too simple'], field)) {
+                                display.errorOn(field, errorMessages['password']['simple']);
+                            }
+                            if (!field.value) display.errorOff(field);
+                            break;
+                        case 'phone':
+                            if (!check.pattern(patterns['phone'], field)) {
+                                display.errorOn(field, errorMessages['phone']);
+                            }
+                            if (!field.value) display.errorOff(field);
+                            break;
+                    }
+                    display.submitState();
                 }
                 // set time lag for validating inputs and informing a user with error messages
             var timeout = setTimeout(validInputs, 500);
