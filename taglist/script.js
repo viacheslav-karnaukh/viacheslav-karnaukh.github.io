@@ -70,7 +70,7 @@
                 return arr.indexOf(tag) === i;
             }).forEach(function(tag) {
                 container.append('<span></span> ').find('span').last()
-                    .text(tag).append('<span class="cross">' + '\u274c' + '</span>');
+                    .text(tag).append('<span class="cross">&#10060;</span>');
             });
         }
     };
