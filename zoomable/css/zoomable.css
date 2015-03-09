@@ -17,12 +17,7 @@
     bottom: 10%;
     text-align: center;
 }
-.img-wrap {
-    position: relative;
-    display: inline-block;
-    height: 100%;
-    width: 100%; 
-}
+
 .big-img img {
     display: block;
     max-width: 100%;
