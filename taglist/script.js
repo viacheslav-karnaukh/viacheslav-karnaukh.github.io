@@ -70,7 +70,7 @@
                 return arr.indexOf(tag) === i;
             }).forEach(function(tag) {
                 container.append('<span></span> ').find('span').last()
-                    .text(tag).append('<span class="cross">&#10060;</span>');
+                    .text(tag).append('<span class="cross">✖</span>');
             });
         }
     };
@@ -99,7 +99,7 @@
         });
         if (tagValue && $.inArray(tagValue, arrOfTags) === -1) {
             this.tagsContainer.append('<span></span> ').find('span').last()
-                .text(tagValue).append('<span class="cross">&#10060;</span>');
+                .text(tagValue).append('<span class="cross">✖</span>');
             textInputField.val('');
         }
         this.startEditMode(tagList);
