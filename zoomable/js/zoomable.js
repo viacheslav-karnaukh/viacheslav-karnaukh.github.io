@@ -13,13 +13,14 @@ function makeZoomable(node) {
     function showZoomed(img) {
         blur.show();
         zoomedImg.attr('src', img.src.replace('small', 'large'));
-        bigImgWrapper.slideDown('fast', positionCloseBtn);        
+        bigImgWrapper.slideDown('fast', positionCloseBtn);
+
     }
 
     function positionCloseBtn() {
-        closeBtn.fadeIn();
         shiftRight = (zoomedImg.parent().width() - zoomedImg.width()) / 2;
         closeBtn.css('right', shiftRight);
+        closeBtn.fadeIn();
     }
 
     function closeImg() {
