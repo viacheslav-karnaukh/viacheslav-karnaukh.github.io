@@ -13,7 +13,7 @@ function makeZoomable(node) {
     function showZoomed(img) {
         blur.show();
         zoomedImg.attr('src', img.src.replace('small', 'large'));
-        bigImgWrapper.show('fast', positionCloseBtn);
+        bigImgWrapper.show('show', positionCloseBtn);
     }
 
     function positionCloseBtn() {
