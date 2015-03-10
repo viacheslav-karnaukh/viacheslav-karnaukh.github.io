@@ -11,9 +11,10 @@ function makeZoomable(node) {
     var shiftRight;
 
     function showZoomed(img) {
-        blur.show();
         zoomedImg.attr('src', img.src.replace('small', 'large'));
-        bigImgWrapper.show('show', positionCloseBtn);
+        blur.show();
+        bigImgWrapper.fadeIn('fast');
+        setTimeout(positionCloseBtn, 500);
     }
 
     function positionCloseBtn() {
@@ -30,6 +31,7 @@ function makeZoomable(node) {
     node.on('click', 'img', function() {
         showZoomed(this);
     });
+    
     closeBtn.on('click', function() {
         closeBtn.hide();
         closeImg();
