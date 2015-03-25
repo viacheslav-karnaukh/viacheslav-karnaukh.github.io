@@ -1,0 +1,113 @@
+body {
+	background: #f2f7fa;
+	font: bold 14px "Trebuchet MS", verdana, sans-serif;
+	color: #8a9aa1;
+}
+
+.tasks {
+	width: 240px;
+	border: 1px solid #ced3d6;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	margin: auto;
+}
+
+.tasks-header {
+	height: 40px;
+	border-bottom: 1px solid #ced3d6;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+	background: -webkit-linear-gradient(#f2f4fa, #e6e9eb);
+	background: -o-linear-gradient(#f2f4fa, #e6e9eb);
+	background: -moz-linear-gradient(#f2f4fa, #e6e9eb);
+	background: linear-gradient(#f2f4fa, #e6e9eb);
+	position: relative;
+	padding: 0 15px;
+}
+
+.tasks-title {
+	float: left;
+}
+
+h2 {
+	font-size: 16px;
+	color: #5d6a6b;
+	line-height: 1;
+}
+
+.tasks-lists:after {
+	content: "\2630";
+	color: #8c949c;
+	font-size: 26px;
+	line-height: 1;
+	position: absolute;
+	left: 207px;
+	top: 6px;
+}
+
+.tasks-list {
+	height: 150px;
+	padding: 0;
+	border: none;
+	background: #fff;
+	clear: both;	
+}
+
+.tasks-list-item {
+	display: block;
+	height: 50px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	border-bottom: 1px solid #f0f1f2;
+	position: relative;
+}
+
+.tasks-list-item:hover {
+	cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #f2f7fa;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+.tasks-list-mark {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	border: 2px solid #c5cbd1;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+	margin: 12px 15px;
+}
+
+input[type=checkbox]:checked + .tasks-list-mark {
+	content: url(../checkmark.png);	
+	border: 2px solid #3ac974;
+}
+
+/*check mark for IE and FF*/
+input[type=checkbox]:checked + .tasks-list-mark:after {
+	content: "\2714";
+	color: #3ac974;
+	margin: 3px;
+	font-size: 16px;
+}
+
+.tasks-list-desc {
+	position: absolute;
+	top: 17px;
+}
+
+input[type=checkbox]:checked ~ .tasks-list-desc {
+	color: #35bd6d;
+	text-decoration: line-through;
+}
