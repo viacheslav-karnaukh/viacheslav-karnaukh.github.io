@@ -3,13 +3,13 @@ body {
 	color: #555;
 }
 .wrapper {
-	width: 1300px;
+	width: 1200px;
 	margin: 0 auto;
 }
 h1 { text-align: center; }
 .handling,
 .output {
-	width: 550px;
+	width: 520px;
 	float: left;
 	margin: 0 20px;
 	border: 1px solid #ccc;
