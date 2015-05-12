@@ -61,8 +61,6 @@ If average monthly salary of Employees is equal use Employee name instead. */
 function EmployeesCollection(employees) {
 	if (arguments.length) {
 		try {
-			/*this.employees = this._sort(employees).map(function(employee) {
-				return new EmployeeFactory().createEmployee(employee);*/
 			this.employees = this._sort(employees).map(function(employee) {
 				return new EmployeeFactory().createEmployee(employee);
 			});
@@ -174,17 +172,13 @@ Parser.prototype.init = function() {
 	this.textareaButton.click(function() {
 		if(this.textarea.val()) {
 			collection.getData('html', this.textarea.val());
-			this.output.append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-				return JSON.stringify(employee);
-			}) + '</code></div>'));
+			this.output.append($('<div><code class="hljs json">' + JSON.stringify(collection.employees) + '</code></div>'));
 		}	
 		decorateWithHighlight();
 	}.bind(this));
 	this.inputForWebButton.click(function() {
 		function cb () {
-				this.output.append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-					return JSON.stringify(employee);
-				}) + '</code></div>'));
+				this.output.append($('<div><code class="hljs json">' + JSON.stringify(collection.employees) + '</code></div>'));
 				decorateWithHighlight();
 		};
 		collection.getData('json', this.inputForWeb.val(), cb.bind(this));
@@ -216,3 +210,43 @@ var nodesForParser = {
 };
 var parser = new Parser(nodesForParser);
 parser.init();
+
+/*function decorateWithHighlight() {
+	$('code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});
+}
+
+$('#getDataArea').click(function() {
+	if($('textarea').val()) {
+		collection.getData('html', $('textarea').val());
+		$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+			return JSON.stringify(employee);
+		}) + '</code></div>'));
+	}	
+	decorateWithHighlight();
+});
+$('#getDataWeb').click(function() {
+	function cb () {
+			$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+				return JSON.stringify(employee);
+			}) + '</code></div>'));
+			decorateWithHighlight();
+	}
+	collection.getData('json', $('#webSource').val(), cb);
+});
+$('#getInfo').click(function() {
+	$('.output').append($('<div><code class="hljs json">' + JSON.stringify(collection.getInfo()) + '</code></div>'));
+	decorateWithHighlight();
+});
+$('#getTop5').click(function() {
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames($('#topNames').val())) + '</code></div>'));
+	decorateWithHighlight();
+});
+$('#getLast3Ids').click(function() {
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds($('#lastIds').val())) + '</code></div>'));
+	decorateWithHighlight();
+});
+
+var collection = new EmployeesCollection();
+*/

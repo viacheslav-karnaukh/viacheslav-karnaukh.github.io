@@ -127,8 +127,7 @@ EmployeesCollection.prototype.getData = function(dataType,source,callFunc) {
 			} catch(e) {
 				alert('Invalid input.');
 				throw new Error('Invalid input.');
-			}
-			
+			}			
 			break;
 		case 'json':
 			$.getJSON(source, function(data) {
@@ -149,17 +148,13 @@ function decorateWithHighlight() {
 $('#getDataArea').click(function() {
 	if($('textarea').val()) {
 		collection.getData('html', $('textarea').val());
-		$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-			return JSON.stringify(employee);
-		}) + '</code></div>'));
+		$('.output').append($('<div><code class="hljs json">' + JSON.stringify(collection.employees) + '</code></div>'));
 	}	
 	decorateWithHighlight();
 });
 $('#getDataWeb').click(function() {
 	function cb () {
-			$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-				return JSON.stringify(employee);
-			}) + '</code></div>'));
+			$('.output').append($('<div><code class="hljs json">' + JSON.stringify(collection.employees) + '</code></div>'));
 			decorateWithHighlight();
 	}
 	collection.getData('json', $('#webSource').val(), cb);
