@@ -11,11 +11,26 @@ function Employee() {}
 Employee.prototype.getSalary = function() {
 	throw new Error("You should define this method in the class before use.");
 };
-function EmployeeWithFixedSalary(salary,name,id) {
-	this.type = 'FixedSalaryEmployee';
-	this.salary = salary;
-	this.name = name;
-	this.id = id;	
+
+function EmployeeFactory() {}
+EmployeeFactory.prototype.createEmployee = function(parameters) {
+  var parentClass = null;
+  switch(parameters.type) {
+  	case 'FixedSalaryEmployee':
+  		parentClass = EmployeeWithFixedSalary;
+  		break;
+  	case 'HourlySalaryEmployee':
+	  	parentClass = EmployeeWithHourlySalary;
+	  	break;
+  }  
+  if(parentClass === null) return false;  
+  return new parentClass(parameters);
+}
+
+function EmployeeWithFixedSalary(parameters) {
+	this.salary = parameters.salary;
+	this.name = parameters.name;
+	this.id = parameters.id;	
 }
 EmployeeWithFixedSalary.prototype = Object.create(Employee.prototype, {
 	getSalary: {
@@ -24,11 +39,10 @@ EmployeeWithFixedSalary.prototype = Object.create(Employee.prototype, {
 		}
 	}
 });
-function EmployeeWithHourlySalary(salary,name,id) {
-	this.type = 'HourlySalaryEmployee';
-	this.salary = salary;
-	this.name = name;
-	this.id = id;
+function EmployeeWithHourlySalary(parameters) {
+	this.salary = parameters.salary;
+	this.name = parameters.name;
+	this.id = parameters.id;
 }
 EmployeeWithHourlySalary.prototype = Object.create(Employee.prototype, {
 	getSalary: {
@@ -47,7 +61,11 @@ If average monthly salary of Employees is equal use Employee name instead. */
 function EmployeesCollection(employees) {
 	if (arguments.length) {
 		try {
-			this.employees = this._sort(employees);
+			/*this.employees = this._sort(employees).map(function(employee) {
+				return new EmployeeFactory().createEmployee(employee);*/
+			this.employees = this._sort(employees).map(function(employee) {
+				return new EmployeeFactory().createEmployee(employee);
+			});
 		} catch(e) {
 			console.error('Wrong argument. It should be an array of employees\' objects.');
 		}		
@@ -67,16 +85,7 @@ EmployeesCollection.prototype._sort = function(employees) {
 };
 //Helper to count avg monthly salary.
 EmployeesCollection.prototype._countAvgSalary = function(employee) {
-	var avgSalary = null;
-	switch(employee.type) {
-		case 'FixedSalaryEmployee':
-			avgSalary = EmployeeWithFixedSalary.prototype.getSalary.call(employee);
-			break;
-		case 'HourlySalaryEmployee':
-			avgSalary = EmployeeWithHourlySalary.prototype.getSalary.call(employee);
-			break;
-	}
-	return avgSalary;
+	return new EmployeeFactory().createEmployee(employee).getSalary();
 };
 
 /*2. Ability to get id, name, average monthly salary for each Employee in collection. 
@@ -91,7 +100,7 @@ EmployeesCollection.prototype.getInfo = function() {
 		return {
 			id: employee.id,
 			name: employee.name,
-			salary: this._countAvgSalary(employee)
+			salary: employee.getSalary()
 		};
 	}, this);
 };
@@ -123,56 +132,87 @@ EmployeesCollection.prototype.getData = function(dataType,source,callFunc) {
 	switch(dataType) {
 		case 'html':
 			try {
-				this.employees = this._sort(JSON.parse(source));
+				this.employees = this._sort(JSON.parse(source)).map(function(employee) {
+					return new EmployeeFactory().createEmployee(employee);
+				});
 			} catch(e) {
 				alert('Invalid input.');
 				throw new Error('Invalid input.');
-			}
-			
+			}			
 			break;
 		case 'json':
 			$.getJSON(source, function(data) {
-				this.employees = this._sort(data);
+				this.employees = this._sort(data).map(function(employee) {
+					return new EmployeeFactory().createEmployee(employee);
+				});
 			}.bind(this)).done(callFunc);
 			break;
 	}
 };
 
-var collection = new EmployeesCollection();
-
-function decorateWithHighlight() {
-	$('code').each(function(i, block) {
-		hljs.highlightBlock(block);
-	});
+//Parser for initialization behavior to any page
+function Parser(nodes) {
+	this.textareaButton = nodes.textareaButton;
+	this.inputForWebButton = nodes.inputForWebButton;
+	this.getInfoButton = nodes.getInfoButton;
+	this.getTopNames = nodes.getTopNames;
+	this.topNamesInput = nodes.topNamesInput;
+	this.getLastIdsButton = nodes.getLastIdsButton;
+	this.lastIdsInput = nodes.lastIdsInput;
+	this.inputForWeb = nodes.inputForWeb;
+	this.textarea = nodes.textarea;
+	this.output = nodes.output;
 }
+Parser.prototype.init = function() {
+	var collection = new EmployeesCollection();
+	function decorateWithHighlight() {
+		$('code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	}
 
-$('#getDataArea').click(function() {
-	if($('textarea').val()) {
-		collection.getData('html', $('textarea').val());
-		$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-			return JSON.stringify(employee);
-		}) + '</code></div>'));
-	}	
-	decorateWithHighlight();
-});
-$('#getDataWeb').click(function() {
-	function cb () {
-			$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+	this.textareaButton.click(function() {
+		if(this.textarea.val()) {
+			collection.getData('html', this.textarea.val());
+			this.output.append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
 				return JSON.stringify(employee);
 			}) + '</code></div>'));
-			decorateWithHighlight();
-	}
-	collection.getData('json', $('#webSource').val(), cb);
-});
-$('#getInfo').click(function() {
-	$('.output').append($('<div><code class="hljs json">' + JSON.stringify(collection.getInfo()) + '</code></div>'));
-	decorateWithHighlight();
-});
-$('#getTop5').click(function() {
-	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames($('#topNames').val())) + '</code></div>'));
-	decorateWithHighlight();
-});
-$('#getLast3Ids').click(function() {
-	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds($('#lastIds').val())) + '</code></div>'));
-	decorateWithHighlight();
-});
+		}	
+		decorateWithHighlight();
+	}.bind(this));
+	this.inputForWebButton.click(function() {
+		function cb () {
+				this.output.append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+					return JSON.stringify(employee);
+				}) + '</code></div>'));
+				decorateWithHighlight();
+		};
+		collection.getData('json', this.inputForWeb.val(), cb.bind(this));
+	}.bind(this));
+	this.getInfoButton.click(function() {
+		this.output.append($('<div><code class="hljs json">' + JSON.stringify(collection.getInfo()) + '</code></div>'));
+		decorateWithHighlight();
+	}.bind(this));
+	this.getTopNames.click(function() {
+		this.output.append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames(this.topNamesInput.val())) + '</code></div>'));
+		decorateWithHighlight();
+	}.bind(this));
+	this.getLastIdsButton.click(function() {
+		this.output.append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds(this.lastIdsInput.val())) + '</code></div>'));
+		decorateWithHighlight();
+	}.bind(this));
+}
+var nodesForParser = {
+	textareaButton: $('#getDataArea'),
+	inputForWebButton: $('#getDataWeb'),
+	getInfoButton: $('#getInfo'),
+	getTopNames: $('#getTop5'),
+	topNamesInput: $('#topNames'),
+	getLastIdsButton: $('#getLast3Ids'),
+	lastIdsInput: $('#lastIds'),
+	inputForWeb: $('#webSource'),
+	textarea: $('textarea'),
+	output: $('.output')
+};
+var parser = new Parser(nodesForParser);
+parser.init();
