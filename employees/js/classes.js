@@ -126,6 +126,7 @@ EmployeesCollection.prototype.getData = function(dataType,source,callFunc) {
 				this.employees = this._sort(JSON.parse(source));
 			} catch(e) {
 				alert('Invalid input.');
+				throw new Error('Invalid input.');
 			}
 			
 			break;
@@ -146,10 +147,12 @@ function decorateWithHighlight() {
 }
 
 $('#getDataArea').click(function() {
-	collection.getData('html', $('textarea').val());	
-	$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
-		return JSON.stringify(employee);
-	}) + '</code></div>'));
+	if($('textarea').val()) {
+		collection.getData('html', $('textarea').val());
+		$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+			return JSON.stringify(employee);
+		}) + '</code></div>'));
+	}	
 	decorateWithHighlight();
 });
 $('#getDataWeb').click(function() {
@@ -166,10 +169,10 @@ $('#getInfo').click(function() {
 	decorateWithHighlight();
 });
 $('#getTop5').click(function() {
-	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames(5)) + '</code></div>'));
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames($('#topNames').val())) + '</code></div>'));
 	decorateWithHighlight();
 });
 $('#getLast3Ids').click(function() {
-	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds(3)) + '</code></div>'));
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds($('#lastIds').val())) + '</code></div>'));
 	decorateWithHighlight();
 });

@@ -23,11 +23,21 @@
 		    <p>You can get data from textarea field. You should place valid JSON data in this field.</p>
 		    <textarea></textarea>
 		    <button id="getDataArea">Get data from textarea</button>
-		    <div class="helpers">
-		    	<button id="getInfo">Count avg salary</button>
-			    <button id="getTop5">Show top 5 names</button>
-			    <button id="getLast3Ids">Show last 3 id</button>
-		    </div>		    
+		    <ul class="helpers">
+		    	<li>
+		    		<button id="getInfo">Count avg salary</button>
+		    	</li>
+		    	<li>
+		    		<button id="getTop5">Show</button>
+		    		<input type="number" min="1" value="5" id="topNames">
+		    		<label for="topNames">top names</label>
+		    	</li>
+		    	<li>
+		    		<button id="getLast3Ids">Show</button>
+		    		<input type="number" min="1" value="3" id="lastIds">
+		    		<label for="lastIds">last id's</label>
+		    	</li>
+		    </ul>		    
 	    </div>
 	    <div class="output">
 	    	<h2>Output</h2>
