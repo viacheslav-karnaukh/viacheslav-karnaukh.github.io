@@ -100,7 +100,7 @@ EmployeesCollection.prototype.getInfo = function() {
 Output example: 
 ['Jo', 'Bob', 'Alice', 'Robb', 'Jenny'] */
 EmployeesCollection.prototype.getTopNames = function(quantity) {
-	return this.employees.slice(0,quantity||5).map(function(employee) {
+	return this.employees.slice(0,quantity).map(function(employee) {
 		return employee.name;
 	});
 };
@@ -109,7 +109,7 @@ EmployeesCollection.prototype.getTopNames = function(quantity) {
 Output example: 
 ['id5', 'id4', 'id3']*/
 EmployeesCollection.prototype.getLastIds = function(quantity) {
-	return this.employees.slice(-(quantity||3)).map(function(employee) {
+	return this.employees.slice(-quantity).map(function(employee) {
 		return employee.id;
 	});
 };
@@ -117,10 +117,11 @@ EmployeesCollection.prototype.getLastIds = function(quantity) {
 /*3) Organize ability to get Employees Data from different sources (AJAX, Textarea on the page). 
 Note here: 
 Using the same Collection Class we want to have an ability to get data from Back End in one place but in another place 
-we want to get data from text area on the page(Lets imagine that it's a kind of admin tool).*/
-EmployeesCollection.prototype.getData = function(dataType,source) {
+we want to get data from text area on the page(Lets imagine that it's a kind of admin tool).
+4) Protect your classes from incorrect input. Meaningful error handling.*/
+EmployeesCollection.prototype.getData = function(dataType,source,callFunc) {
 	switch(dataType) {
-		case 'html': //add try/catch
+		case 'html':
 			try {
 				this.employees = this._sort(JSON.parse(source));
 			} catch(e) {
@@ -129,135 +130,46 @@ EmployeesCollection.prototype.getData = function(dataType,source) {
 			
 			break;
 		case 'json':
-			$.getJSON('http://viacheslav-karnaukh.github.io/employees/json/employeesCollection.json', function(data) {
-				//console.table(data);
+			$.getJSON(source, function(data) {
 				this.employees = this._sort(data);
-			}.bind(this));
+			}.bind(this)).done(callFunc);
 			break;
 	}
 };
-/*4) Protect your classes from incorrect input. Meaningful error handling.*/
+
 var collection = new EmployeesCollection();
+
+function decorateWithHighlight() {
+	$('code').each(function(i, block) {
+		hljs.highlightBlock(block);
+	});
+}
+
 $('#getDataArea').click(function() {
-	collection.getData('html', $('textarea').val());
-	$('.output').append(collection.employees.map(function(employee) {
+	collection.getData('html', $('textarea').val());	
+	$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
 		return JSON.stringify(employee);
-	}));
+	}) + '</code></div>'));
+	decorateWithHighlight();
 });
 $('#getDataWeb').click(function() {
-	collection.getData('json', $('#webSource').val());
-	$('.output').append(collection.employees.map(function(employee) {
-		return JSON.stringify(employee);
-	}));
+	function cb () {
+			$('.output').append($('<div><code class="hljs json">' + collection.employees.map(function(employee) {
+				return JSON.stringify(employee);
+			}) + '</code></div>'));
+			decorateWithHighlight();
+	}
+	collection.getData('json', $('#webSource').val(), cb);
 });
 $('#getInfo').click(function() {
-	$('.output').append(JSON.stringify(collection.getInfo()));
+	$('.output').append($('<div><code class="hljs json">' + JSON.stringify(collection.getInfo()) + '</code></div>'));
+	decorateWithHighlight();
 });
 $('#getTop5').click(function() {
-	$('.output').append(JSON.stringify(collection.getTopNames()));
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getTopNames(5)) + '</code></div>'));
+	decorateWithHighlight();
 });
 $('#getLast3Ids').click(function() {
-	$('.output').append(JSON.stringify(collection.getLastIds()));
+	$('.output').append($('<div><code class="hljs">' + JSON.stringify(collection.getLastIds(3)) + '</code></div>'));
+	decorateWithHighlight();
 });
-var testEmployees = [{
-    "type": "HourlySalaryEmployee",
-    "salary": 10,
-    "name": "Anna",
-    "id": 1
-},
-{
-    "type": "HourlySalaryEmployee",
-    "salary": 8,
-    "name": "Bob",
-    "id": 2
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 8000,
-    "name": "Dany",
-    "id": 3
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 8000,
-    "name": "Elara",
-    "id": 4
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 8000,
-    "name": "elara",
-    "id": 5
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 8000,
-    "name": "Clara",
-    "id": 6
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 8000,
-    "name": "Alara",
-    "id": 7
-},
-{
-    "type": "FixedSalaryEmployee",
-    "salary": 1000,
-    "name": "Egor",
-    "id": 8
-}]
-
-/*Ну если невалидный json например
-[08.05.2015 13:19:48] Ruslan Kesheshyan: то надо вывести ошибку
-[08.05.2015 13:20:16] Ruslan Kesheshyan: или, например, если некорректный тип эмплоеера указан, тоже надо вывести ошибку
-[08.05.2015 13:20:38] Viacheslav Karnaukh: т.е. просто можно с использованием трай/кэтч это сделать?
-[08.05.2015 13:22:06] Ruslan Kesheshyan: json на валидность - да
-[08.05.2015 13:22:40] Ruslan Kesheshyan: а вот когда будешь инстанцировать тот или иной тип емплоя взависимости от типа указанного в json  там надо вручную проверять, если такой тип
-[08.05.2015 13:22:47] Ruslan Kesheshyan: для этого на фабрику сделать желательно*/
-
-/*
-function CarDoor( options ) {
-  this.color = options.color || 'red';
-  this.side = options.side || 'right';
-  this.hasPowerWindows = options.hasPowerWindows || true;
-}
- 
-function CarSeat( options ) {
-  this.color = options.color || 'gray';
-  this.material = options.material || 'leather';
-  this.isReclinable = options.isReclinable || true;
-}
- 
-function CarPartFactory() {}
-CarPartFactory.prototype.createPart = function createCarPart( options ) {
-  var parentClass = null;
-  
-  if( options.partType === 'door' ) {
-    parentClass = CarDoor;
-  } else if( options.partType === 'seat' ) {
-    parentClass = CarSeat;
-  }
-  
-  if( parentClass === null ) {
-    return false;
-  }
-  
-  return new parentClass( options );
-}
- 
-// example usage
-var myPartFactory = new CarPartFactory();
-var seat = myPartFactory.createPart( {
-  partType : 'seat',
-  material : 'leather',
-  color : 'blue',
-  isReclinable : false
-} );
- 
-// outputs: true
-console.log( seat instanceof CarSeat );
- 
-// outputs a CarSeat object with material "leather", color "blue", isReclinable "false"
-console.log( seat );
-*/
