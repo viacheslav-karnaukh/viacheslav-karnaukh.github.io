@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" placeholder="search"/>
+<button>Search</button>
+<div id="result"></div>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+$('button').on('click', function(){
+    $.ajax({
+        url: 'test/ajax/url',
+        data: {search: $('input').val()},
+        success: function(resp){
+            $('#result').html(resp.response)
+        },
+        error: function(){
+            $('#result').html('Error has occured');
+        }
+    });
+});
+</script>
+</body>
+</html>
