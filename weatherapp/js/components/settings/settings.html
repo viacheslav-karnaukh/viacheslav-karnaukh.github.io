@@ -1,0 +1,33 @@
+<footer class="controls">    
+    <ul class="filter">
+        <li class="inner-holder">
+            <div class="units left">
+                <label>
+                    <input type="radio" name="degrees" checked="">
+                    <span>°C</span>
+                </label>
+                <label>
+                    <input type="radio" name="degrees">
+                    <span>°F</span>
+                </label>
+            </div>
+            <div class="right">
+                <span class="icon icon-settings"></span>
+            </div>
+        </li>
+        <li class="inner-holder">
+            <label>
+                <span class="filter-description">Show weather for</span>
+                <span class="filter-selected"><span class="filtered-num">3</span> <span class="filter-days">days</span></span>
+                <input id="forecast-period" type="range" min="1" max="7" value="3">
+            </label>
+        </li>
+        <li class="inner-holder">
+            <label>
+                <span class="filter-description">Update weather every</span>
+                <span class="filter-selected"><span class="filtered-num">15</span> min</span>
+                <input id="forecast-update" type="range" min="0" max="60" step="15" value="15">
+            </label>
+        </li>
+    </ul>
+</footer>
