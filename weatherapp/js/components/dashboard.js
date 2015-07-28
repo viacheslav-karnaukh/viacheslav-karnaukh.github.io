@@ -84,7 +84,7 @@ define(['service/geolocation_service', 'service/forecast_service', 'service/stor
             tempHourly: settings[currentCity].hourly.data.map(function(obj) {
                 return Math.round(obj.temperature);
             }),
-            humidity: settings[currentCity].currently.humidity * 100,
+            humidity: Math.round(settings[currentCity].currently.humidity * 100),
             windSpeed: Math.round(settings[currentCity].currently.windSpeed),
             sunrise: prettyTime(settings[currentCity].daily.data[0].sunriseTime * 1000),
             sunset: prettyTime(settings[currentCity].daily.data[0].sunsetTime * 1000),
