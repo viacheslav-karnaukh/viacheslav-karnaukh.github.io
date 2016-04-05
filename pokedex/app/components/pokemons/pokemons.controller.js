@@ -39,8 +39,6 @@
                     $scope.features[i].value = $scope.selectedPokemon[feature];
                 }
             });
-            console.log('$scope.selectedPokemon', $scope.selectedPokemon);
-            console.log('$scope.features', $scope.features);
         };
 
         $scope.loadPokemons = function() {

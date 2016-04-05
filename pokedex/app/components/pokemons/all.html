@@ -1,9 +1,10 @@
 <main ng-controller="PokemonsController as poks">
     <div class="container">
+        <div class="col-xs-12 big-spinner-block" ng-show="initialLoad">
+            <span><span class="glyphicon glyphicon-refresh spinner"></span> Loading...</span>
+        </div>
         <div class="col-sm-8 col-xs-6">
-            <div class="col-xs-12 big-spinner-block" ng-show="initialLoad">
-                <span><span class="glyphicon glyphicon-refresh spinner"></span> Loading...</span>
-            </div>
+            
             <div class="col-md-4 col-xs-12 col-sm-6 text-center" ng-repeat="pokemon in pokemons">
                 <figure class="pokemon-unit" ng-click="showDetailView($index)">
                     <img ng-src="http://pokeapi.co/media/img/{{pokemon.national_id}}.png" alt="Image of pokemon">
