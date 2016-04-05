@@ -1,0 +1,16 @@
+<aside>
+    <div class="col-sm-4 col-xs-6 text-center detail-view">
+        <figure ng-show="selectedPokemon">
+            <img ng-src="http://pokeapi.co/media/img/{{selectedPokemon.national_id}}.png" alt="Image of pokemon">
+            <figcaption>
+                {{selectedPokemon.name}} {{selectedPokemon.national_id | formatID}}
+            </figcaption>
+            <div class="pokemon-info">
+                <div class="pokemon-feature" ng-repeat="feature in features">
+                    <div class="feature-title">{{feature.title}}</div>
+                    <div class="feature-value">{{feature.value}}</div>
+                </div>
+            </div>
+        </figure>
+    </div>
+</aside>

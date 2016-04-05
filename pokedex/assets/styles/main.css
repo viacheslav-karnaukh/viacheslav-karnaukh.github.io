@@ -1,0 +1,183 @@
+main {
+    margin: 50px 0 0 0;
+}
+figcaption {
+    font-weight: bold;
+}
+.detail-view {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.detail-view img {
+    width: 200px;
+}
+.detail-view figure {
+    background: #fafafa;
+    padding: 30px 0;
+    overflow: hidden;
+}
+.detail-view figcaption {
+    font-size: 24px;
+}
+
+.pokemon-unit {
+    max-width: 250px;
+    margin: 15px 0;
+    overflow: hidden;
+    box-shadow: 0 0 1px 1px;
+    transition: all 0.5s;
+    padding: 30px 15px;
+        
+}
+.pokemon-unit:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 1px;
+}
+.pokemon-unit:hover img {
+    transform: scale(1.1);
+}
+.pokemon-unit img {
+    margin: 30px 0;
+    width: 120px;
+    height: 120px;
+    transition: all 0.5s;
+}
+.pokemon-unit figcaption {
+    margin: 15px 0;
+}
+.pokemon-info {
+    display: table;
+    width: 200px;
+    margin: 20px auto;
+    border: 1px solid #aaa;
+}
+
+.pokemon-feature {
+    display: table-row;
+}
+.pokemon-feature:nth-child(2n + 1) {
+    background: #eee;
+}
+/*.pokemon-feature:hover {
+    background: #eee;
+}*/
+
+.feature-title,
+.feature-value {
+    display: table-cell;
+    width: 50%;
+}
+/*.pokemon-feature:last-child .feature-title,
+.pokemon-feature:last-child .feature-value {
+    border-bottom: none;
+}
+.feature-title {
+    border-right: 1px solid #ccc;
+}*/
+/*[ng-class="tag"] {
+    color: #fff;
+    padding: 5px;
+    background: #6C6D6E;
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 3px;
+}*/
+.tag {
+    color: #fff;
+    padding: 5px;
+    background: #6C6D6E;
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 3px;
+}
+
+[ng-class="tag-grass"] {
+    background: #0EC267;
+}
+
+[ng-class="tag-fire"] {
+    background: #C20E0E;
+}
+
+[ng-class="tag-poison"] {
+    background: #C2C00E;
+}
+
+[ng-class="tag-steel"] {
+    background: #67A2A6;
+}
+
+[ng-class="tag-water"] {
+    background: #64C1E8;
+}
+
+[ng-class="tag-ice"] {
+    background: #8CF0E0;
+}
+
+[ng-class="tag-rock"] {
+    background: #3A3E41;
+}
+
+[ng-class="tag-dragon"] {
+    background: #C73737;
+}
+
+[ng-class="tag-fairy"] {
+    background: #C73791;
+}
+
+[ng-class="tag-flying"] {
+    background: #7D34FF;
+}
+
+[ng-class="tag-bug"] {
+    background: #B08337;
+}
+
+[ng-class="tag-normal"] {
+    background: #66C978;
+}
+
+/*["Fighting", "Ground", "Ghost", "Electric", "Dark", "Unknown", "Shadow", "Psychic"]*/
+
+.big-spinner-block {
+    height: 350px;
+    text-align: center;
+    display: table;
+}
+
+.big-spinner-block > span {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 28px;
+}
+
+.spinner {    
+    animation: spinner 2s infinite linear;
+}
+.spinner:before {
+    transform: rotate(45deg);
+}
+
+.detail-view img {
+    animation: activate-pokemon 1s infinite ease-in-out;
+}
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes activate-pokemon {
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+
+}
