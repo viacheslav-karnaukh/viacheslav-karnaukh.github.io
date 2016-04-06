@@ -1,9 +1,11 @@
 main {
     margin: 50px 0 0 0;
 }
+
 figcaption {
     font-weight: bold;
 }
+
 .detail-view {
     position: fixed;
     right: 0;
@@ -14,11 +16,13 @@ figcaption {
 .detail-view img {
     width: 200px;
 }
+
 .detail-view figure {
     background: #fafafa;
     padding: 30px 0;
     overflow: hidden;
 }
+
 .detail-view figcaption {
     font-size: 24px;
 }
@@ -29,25 +33,29 @@ figcaption {
     overflow: hidden;
     box-shadow: 0 0 1px 1px;
     transition: all 0.5s;
-    padding: 30px 15px;
-        
+    padding: 30px 15px;        
 }
+
 .pokemon-unit:hover {
     cursor: pointer;
     box-shadow: 0 0 10px 1px;
 }
+
 .pokemon-unit:hover img {
     transform: scale(1.1);
 }
+
 .pokemon-unit img {
     margin: 30px 0;
     width: 120px;
     height: 120px;
     transition: all 0.5s;
 }
+
 .pokemon-unit figcaption {
     margin: 15px 0;
 }
+
 .pokemon-info {
     display: table;
     width: 200px;
@@ -58,33 +66,17 @@ figcaption {
 .pokemon-feature {
     display: table-row;
 }
+
 .pokemon-feature:nth-child(2n + 1) {
     background: #eee;
 }
-/*.pokemon-feature:hover {
-    background: #eee;
-}*/
 
 .feature-title,
 .feature-value {
     display: table-cell;
     width: 50%;
 }
-/*.pokemon-feature:last-child .feature-title,
-.pokemon-feature:last-child .feature-value {
-    border-bottom: none;
-}
-.feature-title {
-    border-right: 1px solid #ccc;
-}*/
-/*[ng-class="tag"] {
-    color: #fff;
-    padding: 5px;
-    background: #6C6D6E;
-    text-transform: capitalize;
-    display: inline-block;
-    margin: 3px;
-}*/
+
 .tag {
     color: #fff;
     padding: 5px;
@@ -142,7 +134,37 @@ figcaption {
     background: #66C978;
 }
 
-/*["Fighting", "Ground", "Ghost", "Electric", "Dark", "Unknown", "Shadow", "Psychic"]*/
+[ng-class="tag-normal"] {
+    background: #8F3634;
+}
+
+[ng-class="tag-normal"] {
+    background: #9B773A;
+}
+
+[ng-class="tag-normal"] {
+    background: #81D0CE;
+}
+
+[ng-class="tag-normal"] {
+    background: #5CA2F1;
+}
+
+[ng-class="tag-normal"] {
+    background: #000;
+}
+
+[ng-class="tag-normal"] {
+    background: #596D82;
+}
+
+[ng-class="tag-normal"] {
+    background: #B8B18C;
+}
+
+[ng-class="tag-normal"] {
+    background: #C888AD;
+}
 
 .big-spinner-block {
     height: 350px;
@@ -159,6 +181,7 @@ figcaption {
 .spinner {    
     animation: spinner 2s infinite linear;
 }
+
 .spinner:before {
     transform: rotate(45deg);
 }
@@ -166,6 +189,7 @@ figcaption {
 .detail-view img {
     animation: activate-pokemon 1s infinite ease-in-out;
 }
+
 @keyframes spinner {
     to {
         transform: rotate(360deg);
@@ -179,5 +203,4 @@ figcaption {
     100% {
         transform: scale(1);
     }
-
 }

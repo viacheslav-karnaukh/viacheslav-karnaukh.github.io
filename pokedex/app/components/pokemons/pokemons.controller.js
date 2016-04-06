@@ -44,7 +44,6 @@
         $scope.loadPokemons = function() {
             $scope.isLoading = true;
             Pokemons.get({offset: $scope.pokemons.length}).$promise.then(function(data) {
-                console.log(data);
                 [].push.apply($scope.pokemons, data.objects);
                 $scope.isLoading = false;
             });
@@ -53,7 +52,6 @@
         function onInitialLoad() {
             $scope.initialLoad = true;
             Pokemons.get().$promise.then(function(data) {
-
                 $scope.pokemons = data.objects;
                 $scope.initialLoad = false;
             });
