@@ -133,36 +133,36 @@ figcaption {
 [ng-class="tag-normal"] {
     background: #66C978;
 }
-
-[ng-class="tag-normal"] {
+----------------------------------
+[ng-class="tag-fighting"] {
     background: #8F3634;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-poison"] {
     background: #9B773A;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-ground"] {
     background: #81D0CE;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-electric"] {
     background: #5CA2F1;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-dark"] {
     background: #000;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-unknown"] {
     background: #596D82;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-shadow"] {
     background: #B8B18C;
 }
 
-[ng-class="tag-normal"] {
+[ng-class="tag-psychic"] {
     background: #C888AD;
 }
 
