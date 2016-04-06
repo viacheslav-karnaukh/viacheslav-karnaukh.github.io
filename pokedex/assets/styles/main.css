@@ -94,10 +94,6 @@ figcaption {
     background: #C20E0E;
 }
 
-[ng-class="tag-poison"] {
-    background: #C2C00E;
-}
-
 [ng-class="tag-steel"] {
     background: #67A2A6;
 }
@@ -156,6 +152,10 @@ figcaption {
 
 [ng-class="tag-unknown"] {
     background: #596D82;
+}
+
+[ng-class="tag-ghost"] {
+    background: #6196FF;
 }
 
 [ng-class="tag-shadow"] {
