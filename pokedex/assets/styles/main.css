@@ -133,13 +133,13 @@ figcaption {
 [ng-class="tag-normal"] {
     background: #66C978;
 }
-----------------------------------
+
 [ng-class="tag-fighting"] {
     background: #8F3634;
 }
 
 [ng-class="tag-poison"] {
-    background: #9B773A;
+    background: #D1EC1A;
 }
 
 [ng-class="tag-ground"] {
