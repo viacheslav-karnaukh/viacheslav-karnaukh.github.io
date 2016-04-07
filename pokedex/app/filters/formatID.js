@@ -7,11 +7,8 @@
 
     function formatID() {
         return function(id) {
-            if(id) {
-                id = String(id);
-                var transformedIds = ['', '#00' + id, '#0' + id];
-                return id.length < 3 ? transformedIds[id.length] : '#' + id;
-            }
+            id = String(id);
+            return id.length < 3 ? ['', '#00' + id, '#0' + id][id.length] : '#' + id;
         };
     }
 })();
