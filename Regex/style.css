@@ -1,0 +1,50 @@
+body {
+	font-family: sans-serif;
+	color: #444;
+    background: #F5F5D9;
+}
+.wrapper {
+	width: 600px;
+	margin: 0 auto;
+}
+.rules {
+	margin: 50px 0;
+}
+.valid, .invalid {
+	display: none;
+	margin-left: 20px;
+}
+.valid {
+	color: #70ACE9;
+}
+.invalid {
+	color: #F34F4F;
+}
+.active {
+	display: inline;
+}
+.test-names input {
+	height: 40px;
+	width: 300px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+.test-names pre {
+	font-size: 16px;
+}
+.error > input {
+	outline: none;
+	box-shadow: 0 0 3px 3px #F34F4F;
+}
+.error > .valid {
+	display: none;
+}
+.error > .invalid {
+	display: inline;
+}
+.no-error > .valid {
+	display: inline;
+}
+.no-error > .invalid {
+	display: none;
+}

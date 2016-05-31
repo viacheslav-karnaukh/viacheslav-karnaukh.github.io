@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Name Validator</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Normal Name Regex</h1>
+		<ol class="rules">
+			<li>Each word starts upper case, max 3 words</li>
+			<li>Only one whitespace between Words</li>
+			<li>Each word at least 2 Characters</li>
+			<li>Only characters from the alphabet are allowed (no number and special chars)</li>
+		</ol>
+		<label class="test-names">
+			<h3>Test here</h3>
+			<pre>/^[A-Z][A-Za-z]+(\s[A-Z][A-Za-z]+){1,2}$/</pre>
+			<input type="text" value="Duncan MacMillan">
+			<span class="valid">valid</span>
+			<span class="invalid">invalid</span>
+		</label>
+	</div>
+    <script src="script.js"></script>
+</body>
+</html>

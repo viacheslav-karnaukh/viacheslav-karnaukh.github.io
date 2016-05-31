@@ -1,0 +1,34 @@
+body {
+	font-family: sans-serif;
+    color: #444;
+    box-sizing: border-box;
+}
+h1 {
+	text-align: center;
+}
+textarea {
+	resize: none;
+	width: 450px;
+	height: 150px;
+	font-size: 20px;
+	display: block;
+	padding: 20px;
+}
+.start-search {
+	display: inline-block;
+	width: 490px;
+	border: 1px solid green;
+	background: #29AE8D;
+	color: #FFF;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px 0;
+}
+.list-similarities {
+	margin-left: 20px;
+}
+.input-block, .output-block {
+	width: 450px;
+	margin: 20px auto;
+	list-style-type: none;
+}
