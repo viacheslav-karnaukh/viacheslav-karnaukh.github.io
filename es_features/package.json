@@ -1,0 +1,13 @@
+{
+  "name": "es_features_presentation",
+  "version": "0.0.1",
+  "description": "New EcmaScript features",
+  "scripts": {
+    "start": "./node_modules/browser-sync/bin/browser-sync.js start --server 'part_1' --files 'part_1' --open localhost --port=5000 --directories"
+  },
+  "author": "Viacheslav Karnaukh <vyacheslav.karnauh@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.17.5"
+  }
+}
