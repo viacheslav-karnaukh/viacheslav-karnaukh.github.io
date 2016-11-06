@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>New ES features</title>
+
+		<meta name="description" content="ECMAScript features">
+		<meta name="author" content="Viacheslav Karnaukh">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			.error, .error * {
+				color: #a23;
+			}
+			.plain, .plain * {
+				color: #fff;
+			}
+			.highlighting {
+				color: #00b6ff;
+			}
+		</style>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<img src="images/js_logo.png" width="200px" >
+					<h2>New EcmaScript features</h2>
+					<h4 class="highlighting">part 1</h4>
+					<p>
+						<small>Created by <a href="https://github.com/viacheslav-karnaukh">Viacheslav Karnaukh</a></small>
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>let and const</h2>
+						<p>
+							New keywords in place of <span class="highlighting">var</span>
+						</p>
+					</section>
+					
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUsers(users) {
+    if(users.length) {
+        var logMessage = 'Users: ' + users;
+        console.log(logMessage);
+    } else {
+        var errorMessage = 'No users';
+        console.error(errorMessage);
+    }
+}
+
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+
+showUsers(users);
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Users: Pinocchio,Pikachu,Darth Vader‎
+						</code></pre>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUsers(users) {
+    console.log(errorMessage); // <--- new line
+    if(users.length) {
+        var logMessage = 'Users: ' + users.join(', ');
+        console.log(logMessage);
+    } else {
+        var errorMessage = 'No users';
+        console.error(errorMessage);
+    }
+}
+
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+showUsers(users);
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<p class="fragment">else block will not execute, but...</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+undefined
+Users: Pinocchio, Pikachu, Darth Vader‎
+						</code></pre>
+						<p class="fragment">...the problem with hoisting <span class="error">👎</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUsers(users) {
+    console.log(errorMessage);
+    if(users.length) {
+        let logMessage = 'Users: ' + users.join(', ');
+        console.log(logMessage);
+    } else {
+        let errorMessage = 'No users';
+        console.error(errorMessage);
+    }
+}
+
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+showUsers(users);
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="error hljs" data-trim>
+ReferenceError: errorMessage is not defined
+						</code></pre>
+						<p class="fragment"><span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function printUsers(users) {
+    for(var i in users) {
+        setTimeout(function() {
+            console.log(users[i])
+        }, 1000);
+    }
+}
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+printUsers(users);
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Darth Vader‎
+Darth Vader‎
+Darth Vader‎
+						</code></pre>
+						<p class="fragment"><span class="error">👎</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function printUsers(users) {
+    for(let i in users) { // <--- use let instead var
+        setTimeout(function() {
+            console.log(users[i])
+        }, 1000);
+    }
+}
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+printUsers(users);
+						</code></pre>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Pinocchio
+Pikachu
+Darth Vader‎
+						</code></pre>
+						<p class="fragment"><span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+let user = 'Pinocchio';
+						</code></pre>
+						<pre><code class="hljs" data-trim contenteditable>
+user = 'Pikachu';
+						</code></pre>
+						<p class="fragment">reassigning is ok <span class="highlighting">👍</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+let user = 'Darth Vader‎';
+						</code></pre>
+						<pre class="fragment"><code class="error hljs" data-trim>
+Duplicate declaration "user"
+						</code></pre>
+						<p class="fragment">redeclaring is not ok <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+let user = 'Pinocchio';
+function showUser() {
+    let user = 'Pikachu'
+    console.log(user)
+}
+showUser();
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Pikachu
+						</code></pre>
+						<p class="fragment">let can be used in different scopes <span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+addEventListener('keyup', function(e) {
+    if(e.keyCode === 13) {
+        console.log('magic numbers are evil')
+    }
+})
+						</code></pre>
+						<p class="fragment"><span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+const ENTER_KEY = 13;
+
+addEventListener('keyup', function(e) {
+    if(e.keyCode === ENTER_KEY) {
+        console.log('this is much clearer')
+    }
+})
+						</code></pre>
+						<p class="fragment"><span class="highlighting">👍</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+feedbackField.addEventListener('keyup', function(e) {
+    if(e.keyCode === ENTER_KEY) {
+        console.log('this will send feedback to the server')
+    }
+})
+						</code></pre>
+						<p class="fragment"><span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+const ENTER_KEY = 13;
+ENTER_KEY = 14;
+						</code></pre>
+						<p class="fragment">reassigning is not ok  <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+const ENTER_KEY;
+						</code></pre>
+						<p class="fragment">shouldn't be uninitialized <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+const USER_SCHEMA = {
+    name: 'string',
+    age: 'number'
+};
+USER_SCHEMA.age = 'int';
+						</code></pre>
+						<p class="fragment">pointer is the same <span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<h4><span class="highlighting">let</span> and <span class="highlighting">const</span> usage rules</h4>
+						<blockquote>
+							<ul>
+								<li>Use const by default</li>
+								<li>Use let only if rebinding is needed</li>
+								<li>var should not be ever used</li>
+							</ul>
+						</blockquote>
+						<small class="fragment grow highlight-red">* these are not strict rules, you should use what fits better for your needs</small>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>functions</h2>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function countUsers(users) {
+	return users.length;
+}
+
+var users = ['Pinocchio', 'Pikachu', 'Darth Vader‎'];
+
+countUsers(users);
+						</code></pre>
+						<p class="fragment">what if <span class="highlighting">users</span> is <span class="error">undefined</span>?</p>
+						<p class="fragment">we have an error <span class="error">👎</span></p>
+					</section>
+					<section>
+						<p>possible solution</p>
+						<pre><code class="hljs" data-trim contenteditable>
+function countUsers(users) {
+	const usersCollection = typeof users !== undefined ? users : [];
+	return usersCollection.length;
+}
+						</code></pre>
+						<p class="fragment">better solution</p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function countUsers(users = []) {
+	return users.length;
+}
+countUsers();
+countUsers(undefined);
+						</code></pre>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+0
+0
+						</code></pre>
+						<p class="fragment">default arguments are cool <span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUserDetails(name, options = {}) {
+	const email = options.email;
+	const password = options.password;
+	console.log(
+		'Name:', name,
+		'\nEmail:', email,
+		'\nPassword:', password
+	);
+}
+
+showUserDetails('Yoda');
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Name: Yoda
+Email: undefined
+Password: undefined
+						</code></pre>
+					</section>
+					<section>
+						<p>clearer function signature with named parameters</p>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUserDetails(name, { email, password }) {
+	console.log(
+		'Name:', name,
+		'\nEmail:', email,
+		'\nPassword:', password
+	);
+}
+
+showUserDetails('Yoda', {
+	email: 'me@yoda.com',
+	password: '111'
+});
+
+showUserDetails('Yoda', { password: '111' });
+						</code></pre>
+						<p class="fragment">What is the output?</p>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Name: Yoda
+Email: me@yoda.com
+Password: 111
+						</code></pre>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Name: Yoda
+Email: undefined
+Password: 111
+						</code></pre>
+					</section>
+					<section>
+						<p>what if we pass only one argument?</p>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUserDetails(name, { email, password }) {
+	console.log(
+		'Name:', name,
+		'\nEmail:', email,
+		'\nPassword:', password
+	);
+}
+
+showUserDetails('Yoda');
+						</code></pre>
+						<p class="fragment">we have an error <span class="error">👎</span></p>
+						<p class="fragment">but we already know about default parameters, so we can use them with named parameters <span class="highlighting">👍</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function showUserDetails(name, { email, password } = {}) {
+	console.log(
+		'Name:', name,
+		'\nEmail:', email,
+		'\nPassword:', password
+	);
+}
+
+showUserDetails('Yoda');
+						</code></pre>
+					</section>
+					<section>
+						<h4>rest parameters</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+function showUsers() {
+	const users = Array.prototype.slice.call(arguments);
+	users.forEach(function(user) {
+		console.log(user);
+	});
+}
+
+showUsers('Pinocchio', 'Pikachu', 'Darth Vader‎');
+						</code></pre>
+						<pre class="fragment"><code class="plain hljs" data-trim>
+Pinocchio
+Pikachu
+Darth Vader‎
+						</code></pre>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function showUsers(...users) {
+	users.forEach(function(user) {
+		console.log(user);
+	});
+}
+
+showUsers('Pinocchio', 'Pikachu', 'Darth Vader‎');
+						</code></pre>
+						<p class="fragment">the result is the same <span class="highlighting">👍</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function assignUsers(userRoom, ...users) {
+	users.forEach(function(user) {
+		userRoom.push(user);
+	})
+}
+						</code></pre>
+					</section>
+					<section>
+						<h4>spread operator</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+getUsers('/users', function(data) {
+	const users = data.users; // <--- here we get array
+	showUsers(users); // <--- the problem
+})
+						</code></pre>
+						<p class="fragment">showUsers takes individual arguments, not array <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+getUsers('/users', function(data) {
+	const users = data.users;
+	showUsers(...users);
+})
+						</code></pre>
+						<p class="fragment">spread operator is awesome <span class="highlighting">👍</span></p>
+					</section>
+					<section>
+						<h4>arrow functions</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+function UsersFetcher(url, collection) {
+    this.url = url;
+    this.collection = collection;
+}
+
+UsersFetcher.prototype.collect = function() {
+    getRequest(this.url, function(data) {
+        const users = data.users;
+        users.forEach(function(user) {
+            this.collection.push(user); // <--- problem
+        });
+    });
+}
+						</code></pre>
+						<p class="fragment">we have a problem with <span class="highlighting">this</span> <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+UsersFetcher.prototype.collect = function() {
+    getRequest(this.url, function(data) {
+        const users = data.users;
+        users.forEach((user) => { // <--- solution
+            this.collection.push(user);
+        });
+    });
+}
+						</code></pre>
+						<p class="fragment">arrow functions provide lexical binding with <span class="highlighting">this</span> <span class="highlighting">👍</span></p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>objects and strings</h2>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+function createUser(firstName, lastName) {
+	const fullName = firstName + ' ' + lastName;
+	return {
+		firstName: firstName,
+		lastName: lastName,
+		fullName: fullName
+	};
+}
+						</code></pre>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function createUser(firstName, lastName) {
+	const fullName = firstName + ' ' + lastName;
+	return { firstName, lastName, fullName };
+}
+						</code></pre>
+						<p class="fragment"><span class="highlighting">👍</span>
+					</section>
+					<section>
+						<p>next improvements</p>
+						<pre><code class="hljs" data-trim contenteditable>
+function createUser(firstName, lastName) {
+	const fullName = firstName + ' ' + lastName;
+	return { firstName, lastName, fullName };
+}
+						</code></pre>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function createUser(firstName, lastName) {
+	const fullName = `${firstName} ${lastName}`;
+	return { firstName, lastName, fullName };
+}
+						</code></pre>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+function createUser(firstName, lastName) {
+	return {
+		firstName,
+		lastName,
+		fullName: `${firstName} ${lastName}`
+	};
+}
+						</code></pre>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+const createUser = (firstName, lastName) => ({
+	firstName,
+	lastName,
+	fullName: `${firstName} ${lastName}`
+});
+						</code></pre>
+					</section>
+					<section>
+						<p>object destructuring</p>
+						<pre><code class="hljs" data-trim contenteditable>
+const user = createUser('Darth', 'Vader');
+
+const firstName = user.firstName;
+const lastName = user.lastName;
+const fullName = user.fullName;
+						</code></pre>
+						<p class="fragment">unnecessary repetition is ugly <span class="error">👎</span></p>
+						<pre class="fragment"><code class="hljs" data-trim contenteditable>
+const { firstName, lastName, fullName } = createUser('Darth', 'Vader');
+						</code></pre>
+						<p class="fragment">same names as properties of object returned by <span class="highlighting">createUser</span> <span class="highlighting">👍</span></p>
+					</section>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				width: 980,
+				height: 750,
+				slideNumber: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
